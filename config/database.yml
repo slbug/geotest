@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS') { 5 } %>
+  username: postgres
+  password: password
+  host: db
+
+development:
+  <<: *default
+  database: geotest_development
+
+test:
+  <<: *default
+  database: geotest_test
+
+production:
+  <<: *default
+  database: geotest_production
+  username: geotest
+  password: <%= ENV['GEOTEST_DATABASE_PASSWORD'] %>
